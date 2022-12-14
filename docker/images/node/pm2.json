@@ -1,0 +1,10 @@
+{
+  "apps": [
+    {
+      "name": "service",
+      "cwd": "/var/www",
+      "script": "./dist/main.js",
+      "instances": 1
+    }
+  ]
+}

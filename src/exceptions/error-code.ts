@@ -1,0 +1,5 @@
+export enum ErrorCode {
+  UNDEFINED_ERROR = '1|500',
+  VALIDATION_ERROR = '2|400',
+  MAIN_SERVICE_ERROR = '3|400',
+}
