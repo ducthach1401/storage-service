@@ -57,7 +57,7 @@ export class StorageController {
   }
 
   @Delete('file/name/:name')
-  async getFile(@Param() params: any, @Res() res: Response) {
+  async deleteFile(@Param() params: any, @Res() res: Response) {
     await this.deleteFileUsecase.call(params.name);
     res.json(normalizeResponseData(true));
   }
