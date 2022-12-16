@@ -18,8 +18,8 @@ export class StorageRepositoryImpl extends StorageRepository {
     return await this.storageService.list(search, paginationParams);
   }
 
-  async upload(name: string, filePath: string, path: string): Promise<void> {
-    await this.storageService.upload(name, filePath, path);
+  async upload(file: Express.Multer.File, path: string): Promise<void> {
+    await this.storageService.upload(file, path);
   }
 
   async delete(name: string): Promise<void> {

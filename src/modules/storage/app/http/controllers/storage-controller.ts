@@ -17,7 +17,7 @@ import { PaginationParams } from 'src/core/models/pagination-params';
 import { DeleteFileUsecase } from 'src/modules/storage/domain/usecases/delete-file-usecase';
 import { GetFilesUsecase } from 'src/modules/storage/domain/usecases/get-files-usecase';
 import { UploadFileUsecase } from 'src/modules/storage/domain/usecases/upload-file-usecase';
-import { GetFilesQueryDto } from '../../dtos/storage-dto';
+import { GetFilesQueryDto, UploadFileBodyDto } from '../../dtos/storage-dto';
 
 @Controller('api/v1/storage')
 export class StorageController {
@@ -49,10 +49,10 @@ export class StorageController {
   @UseInterceptors(FileInterceptor('file'))
   async uploadFile(
     @UploadedFile() file: Express.Multer.File,
-    @Body() body: any,
+    @Body() body: UploadFileBodyDto,
     @Res() res: Response,
   ) {
-    await this.uploadFileUsecase.call(file.originalname, file.path, body.path);
+    await this.uploadFileUsecase.call(file, body.path);
     res.json(normalizeResponseData(true));
   }
 

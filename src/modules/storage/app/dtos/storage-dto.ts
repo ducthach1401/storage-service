@@ -6,3 +6,8 @@ export class GetFilesQueryDto extends PaginationParamsDto {
   @IsString()
   search: string;
 }
+
+export class UploadFileBodyDto {
+  @IsString()
+  path: string;
+}

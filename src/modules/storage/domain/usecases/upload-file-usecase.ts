@@ -5,7 +5,7 @@ import { StorageRepository } from '../repositories/storage-repository';
 export class UploadFileUsecase {
   constructor(private readonly storageRepository: StorageRepository) {}
 
-  async call(name: string, filePath: string, path: string): Promise<void> {
-    await this.storageRepository.upload(name, filePath, path);
+  async call(file: Express.Multer.File, path: string): Promise<void> {
+    await this.storageRepository.upload(file, path);
   }
 }
