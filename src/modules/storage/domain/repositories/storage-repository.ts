@@ -8,7 +8,10 @@ export abstract class StorageRepository {
     paginationParams: PaginationParams,
   ): Promise<PageList<FileModel>>;
 
-  abstract upload(file: Express.Multer.File, path: string): Promise<void>;
+  abstract upload(
+    file: Express.Multer.File,
+    path: string,
+  ): Promise<Record<string, any>>;
 
   abstract delete(name: string): Promise<void>;
 }

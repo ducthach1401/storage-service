@@ -73,16 +73,18 @@ export class StorageService {
     );
   }
 
-  async upload(file: Express.Multer.File, path: string): Promise<void> {
+  async upload(
+    file: Express.Multer.File,
+    path: string,
+  ): Promise<Record<string, any>> {
     const stream = createReadStream(file.path);
-    await this.s3Client.putObject(
-      this.bucket,
-      `${path}/${file.originalname}`,
-      stream,
-      {
-        'Content-Type': file.mimetype,
-      },
-    );
+    const pathUpload = `${path}/${file.originalname}`;
+    await this.s3Client.putObject(this.bucket, pathUpload, stream, {
+      'Content-Type': file.mimetype,
+    });
+    return {
+      public_url: this.publicUrl(pathUpload),
+    };
   }
 
   async delete(name: string): Promise<void> {

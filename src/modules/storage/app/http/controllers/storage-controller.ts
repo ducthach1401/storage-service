@@ -52,8 +52,8 @@ export class StorageController {
     @Body() body: UploadFileBodyDto,
     @Res() res: Response,
   ) {
-    await this.uploadFileUsecase.call(file, body.path);
-    res.json(normalizeResponseData(true));
+    const response = await this.uploadFileUsecase.call(file, body.path);
+    res.json(normalizeResponseData(response));
   }
 
   @Delete('file/name/:name')
